@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>Cylio Studio</title>
+<meta name="description" content="Cylio Studio — محرّر شخصيات أسطوانية: الشكل والمظهر والوضعيات والحركات.">
+<meta name="theme-color" content="#17181a">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/studio.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+</head>
+<body>
+<div id="app" class="app" data-layout="desktop" data-section="character" aria-busy="true">
+  <header class="topbar"></header>
+  <div class="workspace">
+    <main class="stage">
+      <div class="vp-wrap">
+        <div class="viewport"></div>
+        <div class="stage-ui"></div>
+      </div>
+      <section class="timeline" hidden></section>
+    </main>
+    <div class="dock" data-sheet="peek">
+      <div class="sheet-handle" role="button" tabindex="0" aria-label="فتح لوحة الخصائص"><span></span></div>
+      <aside class="side" aria-label="الأقسام"></aside>
+      <aside class="props" aria-label="الخصائص"></aside>
+    </div>
+  </div>
+  <nav class="bottom-nav" aria-label="الأقسام"></nav>
+</div>
+
+<div id="boot" class="boot" role="status">
+  <div class="boot-card">
+    <svg class="boot-mark" viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><rect x="8" y="1.5" width="8" height="6.4" rx="2.4" fill="#ff7a1a"/><rect x="5.5" y="9" width="13" height="7.6" rx="1.8" fill="#e8e8ea"/><rect x="5.5" y="17.6" width="6" height="5" rx="1.8" fill="#e8e8ea" opacity=".6"/><rect x="12.5" y="17.6" width="6" height="5" rx="1.8" fill="#e8e8ea" opacity=".6"/></svg>
+    <h1>Cylio Studio</h1>
+    <p>جارٍ تحميل المحرّر…</p>
+    <div class="boot-bar"><span></span></div>
+  </div>
+</div>
+<noscript><div class="boot error"><div class="boot-card"><h1>Cylio Studio</h1><p>يحتاج المحرّر إلى تفعيل JavaScript.</p></div></div></noscript>
+<script>
+  // a designed error state if the modules never start (old browser, blocked file, network)
+  window.addEventListener('error', function (e) { if (!window.__cylioReady && e && e.target && e.target.tagName === 'SCRIPT') fail(); }, true);
+  setTimeout(function () { if (!window.__cylioReady) fail(); }, 25000);
+  function fail() {
+    var b = document.getElementById('boot'); if (!b || b.classList.contains('error')) return;
+    b.classList.add('error');
+    b.innerHTML = '<div class="boot-card"><div class="boot-mark err" aria-hidden="true">!</div><h1>تعذّر تحميل المحرّر</h1><p>تحقق من الاتصال ثم أعد المحاولة. إن استمرت المشكلة فجرّب متصفحاً أحدث.</p><button class="btn primary" type="button" onclick="location.reload()">إعادة المحاولة</button></div>';
+  }
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "cylio-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cylio Studio: build, style and animate six-part cylinder characters (R6-style rig).",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "node tests/e2e/studio.test.mjs",
+    "test:dist": "node tests/e2e/studio.test.mjs --dist",
+    "build": "node tools/build.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-sans-arabic": "^5.1.0",
+    "esbuild": "^0.24.0",
+    "gltf-validator": "^2.0.0-dev.3.10",
+    "three": "^0.158.0"
+  }
+}
